@@ -8,10 +8,9 @@ export default function PostsList(){
     const { loadingItems,  items, errorData} = useGet(getPosts, []);
 
     if (errorData) {
-        return <h1 className="text-danger">{errorData}</h1>;
-    }
-
-    return (
+        return <h1 className="text-danger">{errorData.errorMessage.toString()}</h1>;
+    } else {
+        return (
             <>
                 <h1 className="text-danger">Posts:</h1>
                 {loadingItems ? <p>waiting for items...</p> : (
@@ -21,5 +20,8 @@ export default function PostsList(){
                     </ul>
                 )}
             </>
-    );
+        );
+    }
+
+
 }

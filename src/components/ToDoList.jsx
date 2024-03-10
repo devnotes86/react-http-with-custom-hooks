@@ -33,7 +33,10 @@ export default function ToDoList(){
         getToDoItemsFromWeb();
     }, []);
 
-    return (
+    if (errorData) {
+        return <h1 className="text-danger">{errorData.errorMessage.toString()}</h1>;
+    } else {
+        return (
             <>
                 <h1 className="text-danger">To Do list:</h1>
                 {loadingItems ? <p>waiting for items...</p> : (
@@ -42,5 +45,8 @@ export default function ToDoList(){
                     </ul>
                 )}
             </>
-    );
+        );
+    }
+
+
 }
