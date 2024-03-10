@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import {getPosts} from "../../http.service.js";
 
 export function useGet(forwardedFunctionToUse, initialValue) {
 
