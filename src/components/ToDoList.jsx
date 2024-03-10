@@ -12,7 +12,7 @@ export default function ToDoList(){
     // http.service.get method everytime when a component is re-rendered.
     useEffect(() => {
 
-        // a wrapper function must have async modifier - because the function called "getTodoItems" will not be resolved immediately. It may take some time until data is retrieved from the http endpoint - therefore the getTodoItems method returns a promise that has to be awaited.
+        // a wrapper function getToDoItemsFromWeb() must have async modifier - because the function called "getTodoItems" will not be resolved immediately. It may take some time until data is retrieved from the http endpoint - therefore the getTodoItems method returns a promise that has to be awaited.
         async function getToDoItemsFromWeb() {
             setLoadingItems(true);
 
