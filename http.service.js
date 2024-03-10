@@ -22,7 +22,7 @@ export async function getPosts() {
 
     console.log(responseData);
     if (response.ok === false){
-        throw new Error('Todos fetching failed.');
+        throw new Error('Posts fetching failed.');
     } else {
         return responseData;
     }
