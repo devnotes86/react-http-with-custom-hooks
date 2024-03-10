@@ -1,33 +1,15 @@
 import {getPosts, getTodoItems} from "../../http.service.js";
-import {useEffect, useState} from "react";
+import {useGet} from '../hooks/useGet.js';
 
 export default function PostsList(){
 
-    const [items, setItems] = useState([]);
-    const [loadingItems, setLoadingItems] = useState(false);
-    const [errorData, setErrorData] = useState();
+    // calling custom hook and passing getPosts function from http.service.js.
+    // [] - empty array passed for displaying initialValue
+    const { loadingItems,  items, errorData} = useGet(getPosts, []);
 
-    useEffect(() => {
-        async function getPostsFromWeb() {
-            setLoadingItems(true);
-
-            try {
-                const receivedItems = await getPosts();
-                setItems(receivedItems);
-
-            } catch (e) {
-                setErrorData({errorMessage: e.toString()});
-            }
-
-            // this setTimeout is added to simulate longer loading times, and to make sure that waiting text "Loading items" is presented
-            setTimeout(() => {
-                setLoadingItems(false);
-            }, 2000);
-        }
-
-        getPostsFromWeb();
-    }, []);
-
+    if (errorData) {
+        return <h1 className="text-danger">{errorData}</h1>;
+    }
 
     return (
             <>
@@ -38,7 +20,6 @@ export default function PostsList(){
                         {items.map(i => (<li key={i.id}>{i.title}</li>))}
                     </ul>
                 )}
-
             </>
     );
 }

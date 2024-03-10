@@ -28,7 +28,6 @@ export default function ToDoList(){
         getToDoItemsFromWeb();
     }, []);
 
-
     return (
             <>
                 <h1 className="text-danger">To Do list:</h1>
@@ -38,9 +37,6 @@ export default function ToDoList(){
                         {items.map(i => (<li key={i.id}>{i.title}</li>))}
                     </ul>
                 )}
-
-
-
 
             </>
     );
